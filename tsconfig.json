@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true
+  },
+  "extends": "expo/tsconfig.base",
+  "include": [".eslintrc.js", "**/*.tsx", "**/*.ts"]
+}

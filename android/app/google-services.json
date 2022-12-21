@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "877407476874",
+    "project_id": "cents-138e9",
+    "storage_bucket": "cents-138e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877407476874:android:1740de21aa6ae1c9fee173",
+        "android_client_info": {
+          "package_name": "com.anonymous.cents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877407476874-ssdfm26kafe4inlc5fnaokt5p1vje617.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAraANsZwu0AUoG1fHnR9kXlXkhLqnJVg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877407476874-ssdfm26kafe4inlc5fnaokt5p1vje617.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
