@@ -1,12 +1,14 @@
 import { View, ViewStyle } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Button, Card, Paragraph } from 'react-native-paper';
 import formatCurrency from '../helpers/formatCurrency';
+import { IBillDetails } from '../types/bill';
 
 interface CardProps {
   style?: ViewStyle;
   title: string;
   icon: string;
   color: 'red' | 'green';
+  bills: IBillDetails[];
 }
 
 export default function OverviewCard({
@@ -14,6 +16,7 @@ export default function OverviewCard({
   icon,
   title,
   color,
+  bills,
 }: CardProps) {
   const LeftContent = props => (
     <Avatar.Icon
@@ -35,11 +38,9 @@ export default function OverviewCard({
       }}
     >
       <Paragraph style={{ color }}>R$</Paragraph>
-      <Paragraph style={{ color: 'black', marginLeft: 5 }}>{amount}</Paragraph>
+      <Paragraph style={{ color: 'black', marginLeft: 5 }}>{1200}</Paragraph>
     </View>
   );
-  const fakeData = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-  const amount = formatCurrency.format(1200).replace('R$', '');
 
   return (
     <Card
@@ -63,12 +64,14 @@ export default function OverviewCard({
           marginTop: 5,
         }}
       >
-        {fakeData.slice(0, 9).map((i, e) => (
+        {bills?.slice(0, 9).map(item => (
           <Paragraph key={Math.random()} style={{ color: 'black' }}>
-            Conta pra pagar
+            {`${item.description} ${formatCurrency.format(
+              parseInt(item.value, 10),
+            )}`}
           </Paragraph>
         ))}
-        {fakeData.length > 10 && (
+        {bills.length > 10 && (
           <Paragraph style={{ color: 'black' }}>...</Paragraph>
         )}
       </Card.Content>

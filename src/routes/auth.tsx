@@ -4,6 +4,7 @@ import Config from '../screens/Config';
 import Home from '../screens/Home';
 import { theme } from '../styles/theme';
 import RegisterCash from '../screens/RegisterCash';
+import AddBill from '../components/AddBill';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -17,14 +18,11 @@ export default function AuthRoutes() {
         headerTintColor: 'white',
         tabBarActiveTintColor: theme.colors.primary,
         tabBarStyle: {
-          position: 'absolute',
-          bottom: 25,
-          left: 20,
-          right: 20,
           elevation: 0,
-          borderRadius: 15,
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
           height: 70,
-          paddingBottom: 5,
+          paddingBottom: 10,
         },
       }}
     >
@@ -42,10 +40,12 @@ export default function AuthRoutes() {
         name="Register"
         component={RegisterCash}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons color={color} size={size} name="account-balance" />
+          tabBarIcon: () => (
+            <MaterialIcons color={'white'} size={30} name="add" />
           ),
-          title: 'Registrar gastos',
+          tabBarButton: props => <AddBill {...props} />,
+          tabBarInactiveTintColor: 'red',
+          tabBarLabel: '',
         }}
       />
 

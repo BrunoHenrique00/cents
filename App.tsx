@@ -3,13 +3,19 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { theme } from './src/styles/theme';
 import UserProvider from './src/contexts/UserContext';
 import Routes from './src/routes';
+import BottomSheetProvider from './src/contexts/BottomSheetContext';
+import MonthProvider from './src/contexts/MonthContext';
 
 export default function App() {
   return (
     <PaperProvider theme={theme}>
       <UserProvider>
-        <Routes />
-        <StatusBar style="light" />
+        <MonthProvider>
+          <BottomSheetProvider>
+            <Routes />
+            <StatusBar style="light" />
+          </BottomSheetProvider>
+        </MonthProvider>
       </UserProvider>
     </PaperProvider>
   );
