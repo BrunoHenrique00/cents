@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { theme } from '../styles/theme';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import formatDate from '../helpers/formatDate';
 
 interface CalendarProps {
   onChange: (date: Date) => void;
@@ -21,9 +22,7 @@ export default function Calendar({ onChange }: CalendarProps) {
         onPress={() => setDate(props => ({ ...props, show: true }))}
         icon="calendar"
       >
-        {date.value
-          .toLocaleString('pt-BR', { month: 'long' })
-          .toLocaleUpperCase()}
+        {formatDate(date.value)}
       </Button>
       <View style={styles.dateContainer}>
         {date.show && (

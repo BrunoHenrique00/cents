@@ -1,8 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import { View, ViewStyle } from 'react-native';
 import { Avatar, Button, Card, Paragraph } from 'react-native-paper';
 import formatCurrency from '../helpers/formatCurrency';
 import { IBillDetails } from '../types/bill';
-
 interface CardProps {
   style?: ViewStyle;
   title: string;
@@ -42,6 +42,8 @@ export default function OverviewCard({
     </View>
   );
 
+  const { navigate } = useNavigation();
+
   return (
     <Card
       style={{
@@ -76,7 +78,9 @@ export default function OverviewCard({
         )}
       </Card.Content>
       <Card.Actions>
-        <Button>Ver Transações</Button>
+        <Button onPress={() => navigate('BillsList' as never)}>
+          Ver Transações
+        </Button>
       </Card.Actions>
     </Card>
   );

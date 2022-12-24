@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import formatDate from '../helpers/formatDate';
 
 interface MonthContextProps {
   month: string;
@@ -8,14 +9,10 @@ interface MonthContextProps {
 const MonthContext = createContext<MonthContextProps>({} as MonthContextProps);
 
 const MonthProvider = ({ children }: { children: ReactNode }) => {
-  const [month, setDate] = useState(
-    new Date().toLocaleString('pt-BR', { month: 'long' }).toLocaleUpperCase(),
-  );
+  const [month, setDate] = useState(formatDate(new Date()));
 
   function updateDate(date: Date) {
-    const onlyMonth = date
-      .toLocaleString('pt-BR', { month: 'long' })
-      .toLocaleUpperCase();
+    const onlyMonth = formatDate(date);
     setDate(onlyMonth);
   }
 
