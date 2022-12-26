@@ -5,42 +5,41 @@ import { useUser } from '../../contexts/UserContext';
 import Calendar from '../../components/Calendar';
 import OverviewCard from '../../components/OverviewCards';
 import { useMonth } from '../../contexts/MonthContext';
-import { useEffect, useState } from 'react';
-import billRepository from '../../services/bill.service';
-import { IBillDetails } from '../../types/bill';
+import { ActivityIndicator } from 'react-native-paper';
+import useBills from '../../hooks/useBills/get';
 
 export default function Home() {
   // Hooks
   const { user } = useUser();
   const { updateDate } = useMonth();
-
-  // States
-  const [bills, setBills] = useState<IBillDetails[]>([]);
-
-  useEffect(() => {
-    billRepository.findAll(user?.uid || '').then(bills => setBills(bills));
-  }, []);
+  const { data: bills, isLoading } = useBills();
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Header title={`Olá, ${user?.email || 'pronto para'}`} />
-        <Calendar onChange={date => updateDate(date)} />
-        <OverviewCard
-          bills={bills.filter(bill => bill.type === 'ganhos')}
-          title="Suas Economias"
-          icon="cash-check"
-          color="green"
-        />
-        <OverviewCard
-          bills={bills.filter(bill => bill.type === 'despesa')}
-          color="red"
-          title="Suas Despesas"
-          icon="cash-minus"
-          style={{
-            marginTop: 20,
-          }}
-        />
+        {isLoading || !bills ? (
+          <ActivityIndicator />
+        ) : (
+          <>
+            <Calendar onChange={date => updateDate(date)} />
+            <OverviewCard
+              bills={bills.filter(bill => bill.type === 'ganhos')}
+              title="Suas Economias"
+              icon="cash-check"
+              color="green"
+            />
+            <OverviewCard
+              bills={bills.filter(bill => bill.type === 'despesa')}
+              color="red"
+              title="Suas Despesas"
+              icon="cash-minus"
+              style={{
+                marginTop: 20,
+              }}
+            />
+          </>
+        )}
       </ScrollView>
     </View>
   );

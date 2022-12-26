@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import { useUser } from '../contexts/UserContext';
 import { IBill } from '../types/bill';
 import RadioOption from './RadioOption';
-import { useBottomSheet } from '../contexts/BottomSheetContext';
-import { useMonth } from '../contexts/MonthContext';
-import billRepository from '../services/bill.service';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
+import useBillsMutation from '../hooks/useBills/post';
 
 const FormBill = () => {
   const defaultValues = {
@@ -17,8 +14,7 @@ const FormBill = () => {
   };
 
   // Hooks
-  const { user } = useUser();
-  const { month } = useMonth();
+  const billMutation = useBillsMutation();
   const { dismissAll } = useBottomSheetModal();
 
   // States
@@ -28,11 +24,7 @@ const FormBill = () => {
   async function handleBillForm() {
     setIsloading(true);
     try {
-      await billRepository.save({
-        bill,
-        userId: user?.uid || 'No id provided',
-        month,
-      });
+      await billMutation.mutateAsync(bill);
       dismissAll();
     } catch (error) {
       Alert.alert('Algo deu errado, tente novamente!');

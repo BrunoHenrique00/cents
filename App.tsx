@@ -5,16 +5,21 @@ import UserProvider from './src/contexts/UserContext';
 import Routes from './src/routes';
 import BottomSheetProvider from './src/contexts/BottomSheetContext';
 import MonthProvider from './src/contexts/MonthContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <PaperProvider theme={theme}>
       <UserProvider>
         <MonthProvider>
-          <BottomSheetProvider>
-            <Routes />
-            <StatusBar style="light" />
-          </BottomSheetProvider>
+          <QueryClientProvider client={queryClient}>
+            <BottomSheetProvider>
+              <Routes />
+              <StatusBar style="light" />
+            </BottomSheetProvider>
+          </QueryClientProvider>
         </MonthProvider>
       </UserProvider>
     </PaperProvider>

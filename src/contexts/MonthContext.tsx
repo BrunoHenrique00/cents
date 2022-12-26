@@ -2,22 +2,27 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 import formatDate from '../helpers/formatDate';
 
 interface MonthContextProps {
-  month: string;
+  date: string;
   updateDate: (date: Date) => void;
+  getYear: () => string;
 }
 
 const MonthContext = createContext<MonthContextProps>({} as MonthContextProps);
 
 const MonthProvider = ({ children }: { children: ReactNode }) => {
-  const [month, setDate] = useState(formatDate(new Date()));
+  const [date, setDate] = useState(formatDate(new Date()));
 
   function updateDate(date: Date) {
-    const onlyMonth = formatDate(date);
-    setDate(onlyMonth);
+    const onlydate = formatDate(date);
+    setDate(onlydate);
+  }
+
+  function getYear() {
+    return date.substring(date.length - 4);
   }
 
   return (
-    <MonthContext.Provider value={{ month, updateDate }}>
+    <MonthContext.Provider value={{ date, updateDate, getYear }}>
       {children}
     </MonthContext.Provider>
   );

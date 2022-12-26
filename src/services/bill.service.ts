@@ -17,6 +17,19 @@ const billRepository = {
     return bills;
   },
 
+  findAllByDate: async (id: string, date: string): Promise<IBillDetails[]> => {
+    const result = await firestore()
+      .collection('Bills')
+      .where('userId', '==', id)
+      .where('date', '==', date)
+      .get();
+    const bills: IBillDetails[] = [];
+    result.forEach(item => {
+      bills.push(item.data().bill as IBillDetails);
+    });
+    return bills;
+  },
+
   findByType: async (type: BillType, id: string): Promise<IBillDetails[]> => {
     const result = await firestore()
       .collection('Bills')

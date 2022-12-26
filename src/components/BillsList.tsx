@@ -3,11 +3,11 @@ import { useMonth } from '../contexts/MonthContext';
 import { theme } from '../styles/theme';
 
 export default function BillsList() {
-  const { month } = useMonth();
+  const { date } = useMonth();
 
   return (
     <List.Section>
-      <List.Subheader>Suas transações em {month}</List.Subheader>
+      <List.Subheader>Suas transações em {date}</List.Subheader>
       <List.Item
         title="First Item"
         left={() => <List.Icon color={theme.colors.primary} icon="folder" />}
