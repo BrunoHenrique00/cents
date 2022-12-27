@@ -7,6 +7,7 @@ import OverviewCard from '../../components/OverviewCards';
 import { useMonth } from '../../contexts/MonthContext';
 import { ActivityIndicator } from 'react-native-paper';
 import useBills from '../../hooks/useBills/get';
+import ButtonToTransactions from '../../components/ToTransactions';
 
 export default function Home() {
   // Hooks
@@ -23,6 +24,7 @@ export default function Home() {
         ) : (
           <>
             <Calendar onChange={date => updateDate(date)} />
+            <ButtonToTransactions />
             <OverviewCard
               bills={bills.filter(bill => bill.type === 'ganhos')}
               title="Suas Economias"
@@ -49,12 +51,5 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.backgroundColor,
     marginBottom: 5,
-  },
-  dateContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    marginTop: 20,
   },
 });

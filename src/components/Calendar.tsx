@@ -3,17 +3,19 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { theme } from '../styles/theme';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import formatDate from '../helpers/formatDate';
+import { useMonth } from '../contexts/MonthContext';
 
 interface CalendarProps {
   onChange: (date: Date) => void;
 }
 
 export default function Calendar({ onChange }: CalendarProps) {
+  // Refactor this...
   const [date, setDate] = useState({
     value: new Date(),
     show: false,
   });
+  const { date: month } = useMonth();
 
   return (
     <>
@@ -22,7 +24,7 @@ export default function Calendar({ onChange }: CalendarProps) {
         onPress={() => setDate(props => ({ ...props, show: true }))}
         icon="calendar"
       >
-        {formatDate(date.value)}
+        {month}
       </Button>
       <View style={styles.dateContainer}>
         {date.show && (

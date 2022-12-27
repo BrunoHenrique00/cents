@@ -6,6 +6,7 @@ import Routes from './src/routes';
 import BottomSheetProvider from './src/contexts/BottomSheetContext';
 import MonthProvider from './src/contexts/MonthContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const queryClient = new QueryClient();
 
@@ -15,10 +16,12 @@ export default function App() {
       <UserProvider>
         <MonthProvider>
           <QueryClientProvider client={queryClient}>
-            <BottomSheetProvider>
-              <Routes />
-              <StatusBar style="light" />
-            </BottomSheetProvider>
+            <SafeAreaView style={{ flex: 1 }}>
+              <BottomSheetProvider>
+                <Routes />
+                <StatusBar style="auto" />
+              </BottomSheetProvider>
+            </SafeAreaView>
           </QueryClientProvider>
         </MonthProvider>
       </UserProvider>

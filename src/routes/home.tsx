@@ -15,6 +15,7 @@ export default function HomeRoutes() {
         headerStyle: {
           backgroundColor: 'black',
         },
+        headerShown: false,
         headerTintColor: 'white',
         tabBarActiveTintColor: theme.colors.primary,
         tabBarStyle: {

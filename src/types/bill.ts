@@ -9,4 +9,5 @@ export interface IBill {
 export interface IBillDetails extends IBill {
   userId: string;
   month: string;
+  id: string;
 }

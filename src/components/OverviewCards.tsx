@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, ViewStyle } from 'react-native';
-import { Avatar, Button, Card, Paragraph } from 'react-native-paper';
+import { Avatar, Card, Paragraph } from 'react-native-paper';
 import formatCurrency from '../helpers/formatCurrency';
 import { IBillDetails } from '../types/bill';
 interface CardProps {
@@ -41,9 +41,6 @@ export default function OverviewCard({
       <Paragraph style={{ color: 'black', marginLeft: 5 }}>{1200}</Paragraph>
     </View>
   );
-
-  const { navigate } = useNavigation();
-
   return (
     <Card
       style={{
@@ -77,11 +74,6 @@ export default function OverviewCard({
           <Paragraph style={{ color: 'black' }}>...</Paragraph>
         )}
       </Card.Content>
-      <Card.Actions>
-        <Button onPress={() => navigate('BillsList' as never)}>
-          Ver Transações
-        </Button>
-      </Card.Actions>
     </Card>
   );
 }

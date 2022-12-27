@@ -12,7 +12,10 @@ const billRepository = {
       .get();
     const bills: IBillDetails[] = [];
     result.forEach(item => {
-      bills.push(item.data().bill as IBillDetails);
+      bills.push({
+        ...(item.data().bill as IBillDetails),
+        id: item.id,
+      });
     });
     return bills;
   },
@@ -25,22 +28,36 @@ const billRepository = {
       .get();
     const bills: IBillDetails[] = [];
     result.forEach(item => {
-      bills.push(item.data().bill as IBillDetails);
+      bills.push({
+        ...(item.data().bill as IBillDetails),
+        id: item.id,
+      });
     });
     return bills;
   },
 
-  findByType: async (type: BillType, id: string): Promise<IBillDetails[]> => {
+  findByTypeAndDate: async (
+    type: BillType,
+    date: string,
+    id: string,
+  ): Promise<IBillDetails[]> => {
     const result = await firestore()
       .collection('Bills')
       .where('type', '==', type)
       .where('userId', '==', id)
+      .where('date', '==', date)
       .get();
     const bills: IBillDetails[] = [];
     result.forEach(item => {
-      bills.push(item.data().bill as IBillDetails);
+      bills.push({
+        ...(item.data().bill as IBillDetails),
+        id: item.id,
+      });
     });
     return bills;
+  },
+  deleteById: async (id: string) => {
+    await firestore().collection('Bills').doc(id).delete();
   },
 };
 
