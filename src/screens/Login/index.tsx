@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { theme } from '../../styles/theme';
 import AuthForm from '../../components/LoginForm';
 import { useUser } from '../../contexts/UserContext';
+import LogoCents from '../../components/LogoCents';
 
 export default function Login() {
   const { navigate } = useNavigation();
@@ -23,6 +24,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+      <LogoCents />
       <AuthForm handleForm={handleLogin} buttonLabel="Login" />
       <Text variant="labelMedium" style={{ color: 'white', marginTop: 100 }}>
         Não tem uma conta?

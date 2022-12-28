@@ -19,7 +19,10 @@ export default function App() {
             <SafeAreaView style={{ flex: 1 }}>
               <BottomSheetProvider>
                 <Routes />
-                <StatusBar style="auto" />
+                <StatusBar
+                  style="light"
+                  backgroundColor={theme.colors.backgroundColor}
+                />
               </BottomSheetProvider>
             </SafeAreaView>
           </QueryClientProvider>

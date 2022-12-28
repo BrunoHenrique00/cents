@@ -6,6 +6,7 @@ import { Button, Text, TextInput } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { theme } from '../../styles/theme';
 import AuthForm from '../../components/LoginForm';
+import LogoCents from '../../components/LogoCents';
 
 export default function Register() {
   const { navigate } = useNavigation();
@@ -25,6 +26,7 @@ export default function Register() {
 
   return (
     <View style={styles.container}>
+      <LogoCents />
       <AuthForm handleForm={handleRegister} buttonLabel="Registrar" />
 
       <Text variant="labelMedium" style={{ color: 'white', marginTop: 100 }}>

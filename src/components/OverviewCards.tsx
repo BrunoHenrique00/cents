@@ -18,6 +18,9 @@ export default function OverviewCard({
   color,
   bills,
 }: CardProps) {
+  const total = formatCurrency.format(
+    bills.reduce((acc, bill) => acc + parseInt(bill.value), 0),
+  );
   const LeftContent = props => (
     <Avatar.Icon
       {...props}
@@ -38,9 +41,10 @@ export default function OverviewCard({
       }}
     >
       <Paragraph style={{ color }}>R$</Paragraph>
-      <Paragraph style={{ color: 'black', marginLeft: 5 }}>{1200}</Paragraph>
+      <Paragraph style={{ color: 'black', marginLeft: 5 }}>{total}</Paragraph>
     </View>
   );
+
   return (
     <Card
       style={{

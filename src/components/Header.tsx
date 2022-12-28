@@ -8,7 +8,7 @@ interface HeaderProps {
 const Header = ({ title }: HeaderProps) => {
   return (
     <View style={styles.container}>
-      <Text variant="headlineMedium">{title}</Text>
+      <Text variant="headlineSmall">{title}</Text>
     </View>
   );
 };
